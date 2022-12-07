@@ -57,11 +57,12 @@ export function Search(): JSX.Element {
       {/* <Button type="submit">Search</Button> */}
       {/* </form> */}
       {/* <Listing locations={locations} /> */}
-      {listing.locations?.map((location, idx) => (
+      <Listing listing={listing} />
+      {/* {listing.locations?.map((location, idx) => (
         <Link to={'shops'} key={idx} style={{ display: 'block' }}>
           {location.text}
         </Link>
-      ))}
+      ))} */}
     </div>
     // </PageContent>
   )

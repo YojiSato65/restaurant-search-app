@@ -10,15 +10,16 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 type ListingProps = {
-  locations: []
-  shops: []
+  locations?: []
+  cuisines?: []
+  shops?: []
 }
 
-export function Listing({ locations, shops }: ListingProps): JSX.Element {
+export function Listing({ listing }: ListingProps): JSX.Element {
   const [shopList, setShopList] = useState([])
   const [geoQuery, setGeoQuery] = useState({ latitude: '', longitude: '' })
 
-  const getListing = async () => {
+  const getListing = async (geoQuery) => {
     const res = await fetch(
       `https://staging-snap.tablecheck.com/v2/shop_search?geo_latitude=${geoQuery.latitude}&geo_longitude=${geoQuery.longitude}&shop_universe_id=57e0b91744aea12988000001&locale=en&per_page=50`,
     )
@@ -27,18 +28,35 @@ export function Listing({ locations, shops }: ListingProps): JSX.Element {
     setShopList(data.shops)
   }
 
+  const handleClick = async (location) => {
+    setGeoQuery({
+      latitude: location.payload.geo.lat,
+      longitude: location.payload.geo.lon,
+    })
+
+    getListing(geoQuery)
+  }
+
   useEffect(() => {
-    getListing()
+    // getListing()
   }, [])
 
   return (
     // <PageContent>
     <>
-      {shopList.map((shop, idx) => (
-        <Link to={'/detail'} key={idx}>
-          {shop.name}
-        </Link>
+      {listing.locations?.map((location, idx) => (
+        // <Link to={'shops'} key={idx} style={{ display: 'block' }}>
+        <p onClick={() => handleClick(location)} key={idx}>
+          {location.text}
+        </p>
+        // </Link>
       ))}
+      {shopList &&
+        shopList.map((shop) => (
+          <Link to={'shopdetail'} key={shop._id} style={{ display: 'block' }}>
+            {shop.name}
+          </Link>
+        ))}
     </>
     // </PageContent>
   )
