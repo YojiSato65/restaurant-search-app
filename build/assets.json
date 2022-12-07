@@ -1,0 +1,214 @@
+{
+  "0": {
+    "js": [
+      "http://localhost:3000/static/js/0.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/0.chunk.js.map"
+    ],
+    "chunks": [
+      0
+    ]
+  },
+  "1": {
+    "js": [
+      "http://localhost:3000/static/js/1.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/1.chunk.js.map"
+    ],
+    "chunks": [
+      1
+    ]
+  },
+  "2": {
+    "js": [
+      "http://localhost:3000/static/js/2.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/2.chunk.js.map"
+    ],
+    "chunks": [
+      2
+    ]
+  },
+  "3": {
+    "js": [
+      "http://localhost:3000/static/js/3.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/3.chunk.js.map"
+    ],
+    "chunks": [
+      3
+    ]
+  },
+  "4": {
+    "js": [
+      "http://localhost:3000/static/js/4.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/4.chunk.js.map"
+    ],
+    "chunks": [
+      4
+    ]
+  },
+  "5": {
+    "js": [
+      "http://localhost:3000/static/js/5.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/5.chunk.js.map"
+    ],
+    "chunks": [
+      5
+    ]
+  },
+  "6": {
+    "js": [
+      "http://localhost:3000/static/js/6.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/6.chunk.js.map"
+    ],
+    "chunks": [
+      6
+    ]
+  },
+  "7": {
+    "js": [
+      "http://localhost:3000/static/js/7.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/7.chunk.js.map"
+    ],
+    "chunks": [
+      7
+    ]
+  },
+  "8": {
+    "js": [
+      "http://localhost:3000/static/js/8.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/8.chunk.js.map"
+    ],
+    "chunks": [
+      8
+    ]
+  },
+  "9": {
+    "js": [
+      "http://localhost:3000/static/js/9.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/9.chunk.js.map"
+    ],
+    "chunks": [
+      9
+    ]
+  },
+  "10": {
+    "js": [
+      "http://localhost:3000/static/js/10.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/10.chunk.js.map"
+    ],
+    "chunks": [
+      10
+    ]
+  },
+  "11": {
+    "js": [
+      "http://localhost:3000/static/js/11.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/11.chunk.js.map"
+    ],
+    "chunks": [
+      11
+    ]
+  },
+  "12": {
+    "js": [
+      "http://localhost:3000/static/js/12.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/12.chunk.js.map"
+    ],
+    "chunks": [
+      12
+    ]
+  },
+  "13": {
+    "js": [
+      "http://localhost:3000/static/js/13.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/13.chunk.js.map"
+    ],
+    "chunks": [
+      13
+    ]
+  },
+  "14": {
+    "js": [
+      "http://localhost:3000/static/js/14.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/14.chunk.js.map"
+    ],
+    "chunks": [
+      14
+    ]
+  },
+  "15": {
+    "js": [
+      "http://localhost:3000/static/js/15.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/15.chunk.js.map"
+    ],
+    "chunks": [
+      15
+    ]
+  },
+  "16": {
+    "js": [
+      "http://localhost:3000/static/js/16.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/16.chunk.js.map"
+    ],
+    "chunks": [
+      16
+    ]
+  },
+  "17": {
+    "js": [
+      "http://localhost:3000/static/js/17.chunk.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/17.chunk.js.map"
+    ],
+    "chunks": [
+      17
+    ]
+  },
+  "client": {
+    "js": [
+      "http://localhost:3000/static/js/client.js",
+      "http://localhost:3000/client.0db342c5d218840313d4.hot-update.js"
+    ],
+    "map": [
+      "http://localhost:3000/static/js/client.js.map",
+      "http://localhost:3000/client.0db342c5d218840313d4.hot-update.js.map"
+    ],
+    "chunks": [
+      "client"
+    ]
+  },
+  "noentry": {}
+}

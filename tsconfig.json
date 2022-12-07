@@ -1,0 +1,30 @@
+{
+  "extends": "@tablecheck/scripts/tsconfig/base.json",
+  "exclude": [
+    "node_modules",
+    "**/*.cypress.ts",
+    "**/*.cypress.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/__tests__/**/*",
+    "**/__tests__/*"
+  ],
+  "files": [
+    "/Users/yoji/Desktop/Software engineer/Job hunting 2022.11/tablecheck-demo/.@tablecheck/definitions.d.ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/*.ts",
+    "src/*.tsx",
+    "src/**/*.json",
+    "src/*.json"
+  ],
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "target": "es5",
+    "baseUrl": "src",
+    "noEmit": true
+  }
+}

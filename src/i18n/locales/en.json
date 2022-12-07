@@ -11,7 +11,7 @@
       "about": "About"
     },
     "titles": {
-      "headline": "Hello World!"
+      "headline": "Restaurant Search Demo App"
     },
     "pages": {
       "about_us": "At <0>tablecheck</0> we love connecting diners with restaurants. The purpose of this app is to...",
@@ -25,6 +25,6 @@
     "your_name": "Your name",
     "your_email": "Your email",
     "message": "Message",
-    "app_name": "SPA Boilerplate"
+    "app_name": "TableCheck"
   }
 }
