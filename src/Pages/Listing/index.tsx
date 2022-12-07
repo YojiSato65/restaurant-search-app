@@ -14,13 +14,17 @@ type ListingProps = {
   shops?: []
 }
 
+<<<<<<< HEAD
 export function Listing(): JSX.Element {
+=======
+export function Listing({ listing }: ListingProps): JSX.Element {
+>>>>>>> 8ad71e6c9d2c0452acba7e7d6aedc50919b4016c
   const [shopList, setShopList] = useState([])
 
   const location = useLocation()
   const geoCoordinates = location.state
 
-  const getListing = async () => {
+  const getListing = async (geoQuery) => {
     const res = await fetch(
       `https://staging-snap.tablecheck.com/v2/shop_search?geo_latitude=${geoCoordinates.lat}&geo_longitude=${geoCoordinates.lon}&shop_universe_id=57e0b91744aea12988000001&locale=en&per_page=50`,
     )
@@ -29,8 +33,17 @@ export function Listing(): JSX.Element {
     setShopList(data.shops)
   }
 
+  const handleClick = async (location) => {
+    setGeoQuery({
+      latitude: location.payload.geo.lat,
+      longitude: location.payload.geo.lon,
+    })
+
+    getListing(geoQuery)
+  }
+
   useEffect(() => {
-    getListing()
+    // getListing()
   }, [])
 
   return (

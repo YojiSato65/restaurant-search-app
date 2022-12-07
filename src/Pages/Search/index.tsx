@@ -54,7 +54,8 @@ export function Search(): JSX.Element {
         >
           {location.text}
         </Link>
-      ))}
+      ))}{' '}
+      */}
     </div>
     // </PageContent>
   )
