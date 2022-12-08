@@ -11,13 +11,13 @@ export function Home(): JSX.Element {
   return (
     <HomeWrapper>
       <HomeHeadline>{t('attributes.titles.headline')}</HomeHeadline>
-      {/* <Outlet /> */}
       <Helmet>
         <title lang={language}>{`${t('attributes.titles.headline')} - ${t(
           'keywords.app_name',
         )}`}</title>
       </Helmet>
       <Search />
+      {/* <Outlet /> */}
     </HomeWrapper>
   )
 }

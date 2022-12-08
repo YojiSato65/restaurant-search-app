@@ -9,7 +9,7 @@ import { HomeHeadline, HomeWrapper } from './styles'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-export function ShopDetail(): JSX.Element {
+export function ShopDetails(): JSX.Element {
   const location = useLocation()
   const shop = location.state
   console.log('shop', shop)

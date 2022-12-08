@@ -5,7 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { About } from 'Pages/About'
 import { Home } from 'Pages/Home'
 import { Listing } from 'Pages/Listing'
-import { ShopDetail } from 'Pages/ShopDetail'
+import { ShopDetails } from 'Pages/ShopDetails'
 import { ReportIssue } from 'Pages/ReportIssue'
 import { AppRoute } from 'enums'
 
@@ -34,8 +34,9 @@ export function Router({
         }
       >
         <Route index element={<Home />} />
-        <Route path={AppRoute.Shops} element={<Listing />} />
-        <Route path={AppRoute.ShopDetail} element={<ShopDetail />} />
+        <Route path="shops" element={<Listing />} />
+        <Route path="shopdetails" element={<ShopDetails />} />
+        {/* </Route> */}
         <Route path={AppRoute.About} element={<About />} />
         <Route path={AppRoute.ReportIssue} element={<ReportIssue />} />
       </Route>
