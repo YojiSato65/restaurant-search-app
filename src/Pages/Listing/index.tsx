@@ -43,13 +43,27 @@ export function Listing(): JSX.Element {
     }
   }
 
+  const handleClick = async (location) => {
+    setGeoQuery({
+      latitude: location.payload.geo.lat,
+      longitude: location.payload.geo.lon,
+    })
+
+    getListing(geoQuery)
+  }
+
   useEffect(() => {
+<<<<<<< HEAD
     if (!term) {
       getListing()
     } else {
       updateListing() // make the url with query loadable
     }
   }, [term])
+=======
+    // getListing()
+  }, [])
+>>>>>>> cc9e0122c64c7714a292c77bd76233db27293779
 
   return (
     // <PageContent>
