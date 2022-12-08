@@ -53,17 +53,12 @@ export function Listing(): JSX.Element {
   }
 
   useEffect(() => {
-<<<<<<< HEAD
     if (!term) {
       getListing()
     } else {
       updateListing() // make the url with query loadable
     }
   }, [term])
-=======
-    // getListing()
-  }, [])
->>>>>>> cc9e0122c64c7714a292c77bd76233db27293779
 
   return (
     // <PageContent>
