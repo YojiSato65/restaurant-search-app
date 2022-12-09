@@ -6,13 +6,32 @@ import { Input } from '@tablecheck/tablekit-input'
 
 import { HomeHeadline, HomeWrapper } from './styles'
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, Outlet } from 'react-router-dom'
+
+// TODOs:
+// - fix the geoCoordinates type
+// - add loader
+// - what is the red colon? name:, slug:
 
 export function Listing(): JSX.Element {
-  const [shopList, setShopList] = useState([])
+  const [shopList, setShopList] = useState<
+    [
+      {
+        _id: string
+        name: string
+        slug: string
+      },
+    ]
+  >([
+    {
+      _id: '',
+      name: '',
+      slug: '',
+    },
+  ])
 
   const location = useLocation()
-  let geoCoordinates = location.state
+  let geoCoordinates: any = location.state
 
   const queryParams = new URLSearchParams(window.location.search)
   const term = queryParams.get('term')
@@ -43,15 +62,6 @@ export function Listing(): JSX.Element {
     }
   }
 
-  const handleClick = async (location) => {
-    setGeoQuery({
-      latitude: location.payload.geo.lat,
-      longitude: location.payload.geo.lon,
-    })
-
-    getListing(geoQuery)
-  }
-
   useEffect(() => {
     if (!term) {
       getListing()
@@ -65,16 +75,15 @@ export function Listing(): JSX.Element {
     <>
       {shopList.map((shop) => (
         <Link
-          to={'shopdetails'}
-          // to={`/:locale/${shop._id}`}
+          to={shop.slug}
           key={shop._id}
           style={{ display: 'block' }}
-          state={shop}
+          state={shop.slug}
         >
           {shop.name}
         </Link>
       ))}
-      {/* <Outlet /> */}
+      <Outlet />
     </>
     // </PageContent>
   )

@@ -14,7 +14,7 @@ export function Search(): JSX.Element {
   const [listing, setListing] = useState<{
     locations?: [{ text: string; type: string; payload: { geo: {} } }]
     cuisines?: []
-    shops?: []
+    shops?: [{ text: string; payload: { shop_slug: string } }]
   }>({})
 
   const handleChange = async () => {
@@ -61,7 +61,12 @@ export function Search(): JSX.Element {
       <br />
       {listing.locations && <p>VENUE</p>}
       {listing.shops?.map((shop, idx) => (
-        <Link to={'shops'} key={idx} style={{ display: 'block' }}>
+        <Link
+          to={shop.payload.shop_slug}
+          key={idx}
+          style={{ display: 'block' }}
+          state={shop.payload.shop_slug}
+        >
           {shop.text}
         </Link>
       ))}

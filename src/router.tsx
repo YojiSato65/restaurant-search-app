@@ -5,7 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { About } from 'Pages/About'
 import { Home } from 'Pages/Home'
 import { Listing } from 'Pages/Listing'
-import { ShopDetails } from 'Pages/ShopDetails'
+import { ShopDetail } from 'Pages/ShopDetail'
 import { ReportIssue } from 'Pages/ReportIssue'
 import { AppRoute } from 'enums'
 
@@ -28,15 +28,18 @@ export function Router({
   return (
     <Routes>
       <Route
-        path="/:locale"
+        path="/"
+        // path="/:locale"
         element={
           <PageLayout isDarkMode={isDarkMode} setDarkMode={setDarkMode} />
         }
       >
         <Route index element={<Home />} />
-        <Route path="shops" element={<Listing />} />
-        <Route path="shopdetails" element={<ShopDetails />} />
-        {/* </Route> */}
+        <Route path={AppRoute.Shops}>
+          <Route index element={<Listing />} />
+          <Route path=":shopdetail" element={<ShopDetail />} />
+        </Route>
+        <Route path=":shopdetail" element={<ShopDetail />} />
         <Route path={AppRoute.About} element={<About />} />
         <Route path={AppRoute.ReportIssue} element={<ReportIssue />} />
       </Route>
