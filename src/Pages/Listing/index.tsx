@@ -13,20 +13,22 @@ import { Link, useLocation, Outlet } from 'react-router-dom'
 // - add loader
 // - what is the red colon? name:, slug:
 
+type ShopList = {
+  _id: string
+  name: string
+  slug: string
+  cuisines: string[]
+  search_image: string
+}
+
 export function Listing(): JSX.Element {
-  const [shopList, setShopList] = useState<
-    [
-      {
-        _id: string
-        name: string
-        slug: string
-      },
-    ]
-  >([
+  const [shopList, setShopList] = useState<ShopList[]>([
     {
       _id: '',
       name: '',
       slug: '',
+      cuisines: [],
+      search_image: '',
     },
   ])
 
@@ -71,20 +73,32 @@ export function Listing(): JSX.Element {
   }, [term])
 
   return (
-    // <PageContent>
     <>
       {shopList.map((shop) => (
         <Link
           to={shop.slug}
           key={shop._id}
-          style={{ display: 'block' }}
+          style={{ display: 'block', marginBottom: '10px' }}
           state={shop.slug}
         >
-          {shop.name}
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '200px', height: '120px' }}>
+              <img
+                src={shop.search_image}
+                alt="thumbnail"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <div>
+              <h3> {shop.name}</h3>
+              {shop.cuisines.map((cuisine) => (
+                <span>{cuisine}, </span>
+              ))}
+            </div>
+          </div>
         </Link>
       ))}
       <Outlet />
     </>
-    // </PageContent>
   )
 }

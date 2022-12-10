@@ -1,13 +1,14 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
+import { Input } from '@tablecheck/tablekit-input'
 
-import { Headline, PageWrapper } from 'Layouts';
-import { pageTransitionEasing, slideUp } from 'styles';
+import { Headline, MainWrapper, PageContent, PageWrapper } from 'Layouts'
 
-export const HomeWrapper = styled(PageWrapper)`
-  max-width: initial;
-  animation: ${slideUp} ${pageTransitionEasing} 0.5s;
-`;
+export const SearchPageContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
-export const HomeHeadline = styled(Headline)`
-  text-align: center;
-`;
+export const SearchInput = styled(Input)`
+  width: min(80%, 500px);
+`

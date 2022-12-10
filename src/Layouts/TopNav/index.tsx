@@ -15,9 +15,6 @@ import { getI18nextInstance } from 'i18n'
 import { Sidenav } from '../Sidenav'
 
 import {
-  DesktopOnlyItems,
-  LangSelectorButton,
-  LanguageSelectorWrapper,
   LogoWording,
   LogoWrapper,
   MenuButton,
@@ -25,13 +22,7 @@ import {
   TopNavWrapper,
 } from './styles'
 
-export function TopNav({
-  isDarkMode,
-  setDarkMode,
-}: {
-  isDarkMode: boolean
-  setDarkMode: (value: boolean) => void
-}): JSX.Element | null {
+export function TopNav(): JSX.Element | null {
   const [isMenuOpen, setMenuOpen] = React.useState(false)
   const i18next = getI18nextInstance()
   const navigate = useNavigate()
@@ -53,36 +44,11 @@ export function TopNav({
   return (
     <TopNavWrapper>
       <TopNavContent>
-        {/* <LogoWrapper to={`/${language}`}> */}
         <LogoWrapper to={'/'}>
           <LogoSymbol size="24px" />
           <LogoWording>{t('keywords.app_name')}</LogoWording>
         </LogoWrapper>
         <div style={{ display: 'flex' }}>
-          <DesktopOnlyItems>
-            {/* <Button
-              appearance={ButtonAppearance.Subtle}
-              iconBefore={<Icon icon={tciSun} />}
-              onClick={() => setDarkMode(!isDarkMode)}
-            /> */}
-            {/* <LanguageSelectorWrapper
-              currentLanguage={language}
-              locales={ordered}
-              shouldShowCloseIcon
-              view={View.Desktop}
-              onChangeLanguage={changeLanguage}
-              renderTrigger={({ onClick, ref }) => (
-                <LangSelectorButton
-                  onClick={onClick}
-                  ref={ref}
-                  appearance={ButtonAppearance.Subtle}
-                  iconBefore={<Icon icon={faGlobe} />}
-                >
-                  {currentLocale?.label}
-                </LangSelectorButton>
-              )}
-            /> */}
-          </DesktopOnlyItems>
           <MenuButton
             onClick={() => setMenuOpen(!isMenuOpen)}
             appearance={ButtonAppearance.Subtle}
@@ -93,8 +59,6 @@ export function TopNav({
       <Sidenav
         isOpen={isMenuOpen}
         setOpen={setMenuOpen}
-        isDarkMode={isDarkMode}
-        setDarkMode={setDarkMode}
         changeLanguage={changeLanguage}
       />
     </TopNavWrapper>

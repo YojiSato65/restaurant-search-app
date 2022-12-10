@@ -1,35 +1,39 @@
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router-dom'
 import { PageWrapper, PageContent, Headline, PageImage } from 'Layouts'
-import { Button } from '@tablecheck/tablekit-button'
-import { Input } from '@tablecheck/tablekit-input'
-
 import { HomeHeadline, HomeWrapper } from './styles'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+// TODOs:
+// - better way of implementing conditional render(there are too many)
+// - Price alignment when dinner has min(or max) end lunch has both min and max
+// - add loader
+// - for future improvement: implement booking form and map
+
+type ShopDetail = {
+  name: string[]
+  url: string
+  phone_natl: string
+  alt_address: {
+    city: string
+    street: string
+    street2?: string
+    region: string
+  }
+  is_smartpay: boolean
+  content_title_translations?: { translation?: string }[]
+  content_body_translations?: { translation?: string }[]
+  cuisines: string[]
+  budget_dinner_max?: string
+  budget_dinner_min?: string
+  budget_lunch_max?: string
+  budget_lunch_min?: string
+  search_image: string
+}
+
 export function ShopDetail(): JSX.Element {
-  const [shopDetails, setShopDetails] = useState<{
-    name: string[]
-    url: string
-    phone_natl: string
-    alt_address: {
-      city: string
-      street: string
-      street2?: string
-      region: string
-    }
-    is_smartpay: boolean
-    content_title_translations?: { translation?: string }[]
-    content_body_translations?: { translation?: string }[]
-    cuisines: string[]
-    budget_dinner_max?: string
-    budget_dinner_min?: string
-    budget_lunch_max?: string
-    budget_lunch_min?: string
-    search_image: string
-  }>({
+  const [shopDetail, setShopDetail] = useState<ShopDetail>({
     name: [],
     url: '',
     phone_natl: '',
@@ -47,6 +51,7 @@ export function ShopDetail(): JSX.Element {
 
   const location = useLocation()
   const shop: any = location.state
+  console.log('shop', shop)
 
   const getShopDetails = async () => {
     try {
@@ -54,9 +59,9 @@ export function ShopDetail(): JSX.Element {
         `https://staging-snap.tablecheck.com/v2/shops/${shop}?sort=slug&sort_by=slug&sort_order=asc`,
       )
       const data = await res.json()
-      setShopDetails(data.shops[0])
-      console.log('data1', shopDetails)
-      console.log('data2', data)
+      console.log('data', data.shops[0])
+
+      setShopDetail(data.shops[0])
     } catch (e) {
       console.error(e)
     }
@@ -66,24 +71,20 @@ export function ShopDetail(): JSX.Element {
     getShopDetails()
   }, [])
 
+  if (shopDetail === undefined) {
+    return <div>No detail found</div>
+  }
+
   return (
-    // Priority 1. English 2. Japanese 3. Not display
-
-    // TODOs:
-    // - if the shopDetail is empty, display alert message(e.g itigo - restaurant)
-    // - better way of implementing conditional render(too many repeating code)
-    // - add loader
-    // - implement booking and map
-
-    // <PageContent>
+    // Priority to display 1. English 2. Japanese 3. Not display
     <>
-      {shopDetails.name.length === 1 ? (
+      {shopDetail.name.length === 1 ? (
         <Helmet>
-          <title>{shopDetails.name[0]}</title>
+          <title>{shopDetail.name[0]}</title>
         </Helmet>
-      ) : shopDetails.name.length > 1 ? (
+      ) : shopDetail.name.length > 1 ? (
         <Helmet>
-          <title>{shopDetails.name[1]}</title>
+          <title>{shopDetail.name[1]}</title>
         </Helmet>
       ) : (
         <></>
@@ -98,99 +99,147 @@ export function ShopDetail(): JSX.Element {
       >
         <div style={{ width: '60%' }}>
           <div>
-            <h3>
-              {shopDetails.name.length === 1 ? (
-                <h3>{shopDetails.name[0]}</h3>
-              ) : shopDetails.name.length > 1 ? (
-                <h3>{shopDetails.name[1]}</h3>
-              ) : (
-                <></>
-              )}
-            </h3>
+            {shopDetail.name.length === 1 ? (
+              <h3>{shopDetail.name[0]}</h3>
+            ) : shopDetail.name.length > 1 ? (
+              <h3>{shopDetail.name[1]}</h3>
+            ) : (
+              <></>
+            )}
+
             <p>
-              <span>{shopDetails.alt_address?.street2}</span>
-              <span>{shopDetails.alt_address.street}</span>, &nbsp;
-              <span>{shopDetails.alt_address.city}</span>, &nbsp;
-              <span>{shopDetails.alt_address.region}</span>
+              <span>{shopDetail.alt_address?.street2}</span>
+              <span>{shopDetail.alt_address.street}</span>, &nbsp;
+              <span>{shopDetail.alt_address.city}</span>, &nbsp;
+              <span>{shopDetail.alt_address.region}</span>
             </p>
             <p>
               <span>
-                <a href={shopDetails.url} target="_blank">
+                <a href={shopDetail.url} target="_blank">
                   Website
                 </a>
               </span>
               <span>
-                <a href="tel:{shopDetails.phone_natl}" target="_blank">
-                  {shopDetails.phone_natl}
+                <a href="tel:{shopDetail.phone_natl}" target="_blank">
+                  {shopDetail.phone_natl}
                 </a>
               </span>
             </p>
           </div>
           <br />
           <div>
-            {shopDetails.is_smartpay && <p>Accepts Contactless Pay</p>}
-            {shopDetails.content_title_translations !== undefined &&
-              shopDetails.content_body_translations !== undefined &&
-              shopDetails.content_title_translations.length === 1 && (
+            {shopDetail.is_smartpay && <p>Accepts Contactless Pay</p>}
+            {shopDetail.content_title_translations !== undefined &&
+              shopDetail.content_body_translations !== undefined &&
+              shopDetail.content_title_translations.length === 1 && (
                 <>
                   <h3>
-                    {shopDetails.content_title_translations[0].translation}
+                    {shopDetail.content_title_translations[0].translation}
                   </h3>
-                  <p>{shopDetails.content_body_translations[0].translation}</p>
+                  <p>{shopDetail.content_body_translations[0].translation}</p>
                 </>
               )}
-            {shopDetails.content_title_translations !== undefined &&
-              shopDetails.content_body_translations !== undefined &&
-              shopDetails.content_title_translations.length > 1 && (
+            {shopDetail.content_title_translations !== undefined &&
+              shopDetail.content_body_translations !== undefined &&
+              shopDetail.content_title_translations.length > 1 && (
                 <>
                   <h3>
-                    {shopDetails.content_title_translations[1].translation}
+                    {shopDetail.content_title_translations[1].translation}
                   </h3>
-                  <p>{shopDetails.content_body_translations[1].translation}</p>
+                  <p>{shopDetail.content_body_translations[1].translation}</p>
                 </>
               )}
             <div style={{ display: 'flex' }}>
               <div style={{ width: '50%' }}>
                 <h4>Cuisines</h4>
-                {shopDetails.cuisines.map((cuisine, idx) => (
-                  <p key={idx}>{cuisine}</p>
+                {shopDetail.cuisines.map((cuisine, idx) => (
+                  // use item group
+                  <span key={idx}>{cuisine}, </span>
                 ))}
               </div>
               <div style={{ width: '50%' }}>
                 <h4>Price</h4>
-                {/* <div>
-                  {shopDetails.budget_lunch_min &&
-                  shopDetails.budget_lunch_min === '' ? (
-                    <span>¥ -</span>
-                  ) : (
+                <div>
+                  {shopDetail.budget_lunch_min &&
+                  shopDetail.budget_lunch_max ? (
                     <span>
-                      ¥{shopDetails.budget_lunch_min.slice(0, -2)} ~ ¥
-                      {shopDetails.budget_lunch_max.slice(0, -2)}
+                      ¥
+                      {shopDetail.budget_lunch_min
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      - ¥
+                      {shopDetail.budget_lunch_max
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </span>
+                  ) : shopDetail.budget_lunch_min &&
+                    !shopDetail.budget_lunch_max ? (
+                    <span>
+                      ¥
+                      {shopDetail.budget_lunch_min
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      -
+                    </span>
+                  ) : shopDetail.budget_lunch_max &&
+                    !shopDetail.budget_lunch_min ? (
+                    <span>
+                      {' '}
+                      - ¥
+                      {shopDetail.budget_lunch_max
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </span>
+                  ) : (
+                    <></>
                   )}
                 </div>
                 <div>
-                  {shopDetails.budget_dinner_min &&
-                    shopDetails.budget_dinner_min !== '' && (
-                      <span>
-                        ¥{shopDetails.budget_dinner_min.slice(0, -2)} ~ ¥
-                        {shopDetails.budget_dinner_max.slice(0, -2)}
-                      </span>
-                    )}
-                </div> */}
+                  {shopDetail.budget_dinner_min &&
+                  shopDetail.budget_dinner_max ? (
+                    <span>
+                      ¥
+                      {shopDetail.budget_dinner_min
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      - ¥
+                      {shopDetail.budget_dinner_max
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </span>
+                  ) : shopDetail.budget_dinner_min &&
+                    !shopDetail.budget_dinner_max ? (
+                    <span>
+                      ¥
+                      {shopDetail.budget_dinner_min
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      -
+                    </span>
+                  ) : shopDetail.budget_dinner_max &&
+                    !shopDetail.budget_dinner_min ? (
+                    <span>
+                      - ¥
+                      {shopDetail.budget_dinner_max
+                        .slice(0, -2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div style={{ width: '40%' }}>
           <img
-            src={shopDetails.search_image}
-            alt="shop"
+            src={shopDetail.search_image}
+            alt="restaurant"
             style={{ width: '100%', minWidth: '300px' }}
           />
         </div>
       </div>
     </>
-    // </PageContent>
   )
 }

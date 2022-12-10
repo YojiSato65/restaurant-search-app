@@ -1,7 +1,6 @@
 import { Search } from 'Pages/Search'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router-dom'
 
 import { HomeHeadline, HomeWrapper } from './styles'
 
@@ -17,7 +16,6 @@ export function Home(): JSX.Element {
         )}`}</title>
       </Helmet>
       <Search />
-      {/* <Outlet /> */}
     </HomeWrapper>
   )
 }
