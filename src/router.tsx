@@ -1,4 +1,3 @@
-import { ordered as orderedLocales } from '@tablecheck/locales'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { About } from 'Pages/About'
@@ -21,9 +20,9 @@ export function Router(): JSX.Element {
         <Route index element={<Home />} />
         <Route path={AppRoute.Shops}>
           <Route index element={<Listing />} />
-          <Route path=":shopdetail" element={<ShopDetail />} />
+          <Route path={AppRoute.ShopDetail} element={<ShopDetail />} />
         </Route>
-        <Route path=":shopdetail" element={<ShopDetail />} />
+        <Route path={AppRoute.ShopDetail} element={<ShopDetail />} />
         <Route path={AppRoute.About} element={<About />} />
         <Route path={AppRoute.ReportIssue} element={<ReportIssue />} />
       </Route>

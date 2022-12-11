@@ -1,6 +1,6 @@
 export enum AppRoute {
   Shops = 'shops',
-  ShopDetails = 'shopdetails',
+  ShopDetail = ':shopdetail',
   About = 'about',
   ReportIssue = 'report-issue',
 }

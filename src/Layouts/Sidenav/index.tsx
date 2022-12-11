@@ -62,7 +62,7 @@ export function Sidenav({
       <SidenavItems>
         <Item
           as={Link}
-          to={`/${language}/${AppRoute.About}`}
+          to={`/${AppRoute.About}`}
           elemBefore={<Icon icon={faQuestionCircle} />}
           onClick={() => setOpen(false)}
         >
@@ -70,7 +70,7 @@ export function Sidenav({
         </Item>
         <Item
           as={Link}
-          to={`/${language}/${AppRoute.ReportIssue}`}
+          to={`/${AppRoute.ReportIssue}`}
           elemBefore={<Icon icon={faBug} />}
           onClick={() => setOpen(false)}
         >
@@ -85,34 +85,6 @@ export function Sidenav({
         >
           TableKit
         </Item>
-        <MobileOnlyItems>
-          <Item
-            elemBefore={<Icon icon={tciSun} />}
-            onClick={() => {
-              // setDarkMode(!isDarkMode)
-              setOpen(false)
-            }}
-          >
-            {t('actions.toggle_theme')}
-          </Item>
-          <LanguageSelector
-            currentLanguage={language}
-            locales={ordered}
-            shouldShowCloseIcon
-            view={View.Mobile}
-            itemWidth="100%"
-            onChangeLanguage={changeLanguage}
-            renderTrigger={({ onClick, ref }) => (
-              <Item
-                onClick={onClick}
-                ref={ref}
-                elemBefore={<Icon icon={faGlobe} />}
-              >
-                {currentLocale?.label}
-              </Item>
-            )}
-          />
-        </MobileOnlyItems>
       </SidenavItems>
     </SidenavWrapper>
   )
