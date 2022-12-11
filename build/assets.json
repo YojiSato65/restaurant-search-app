@@ -199,16 +199,18 @@
   },
   "client": {
     "js": [
-      "http://localhost:3000/static/js/client.js",
-      "http://localhost:3000/client.0181f9338961e3a69ace.hot-update.js"
+      "http://localhost:3000/static/js/client.js"
     ],
     "map": [
-      "http://localhost:3000/static/js/client.js.map",
-      "http://localhost:3000/client.0181f9338961e3a69ace.hot-update.js.map"
+      "http://localhost:3000/static/js/client.js.map"
     ],
     "chunks": [
       "client"
     ]
   },
-  "noentry": {}
+  "noentry": {
+    "html": [
+      "http://localhost:3000/index.html"
+    ]
+  }
 }
