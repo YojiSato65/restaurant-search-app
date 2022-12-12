@@ -78,7 +78,7 @@ export function AppThemeProvider({
     <ThemeProvider
       locale={language}
       theme={theme}
-      renderHeadNodes={(nodes) => <Helmet>{nodes}</Helmet>}
+      // renderHeadNodes={(nodes) => <Helmet>{nodes}</Helmet>}
     >
       <Global
         styles={css`

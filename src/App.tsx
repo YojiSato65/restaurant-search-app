@@ -12,7 +12,6 @@ import { getI18nextInstance, initI18n } from 'i18n'
 import { Router } from './router'
 
 export function App(): JSX.Element {
-  const [isDarkMode, setDarkMode] = React.useState(false)
   const i18nState = useAsync(() => initI18n())
   if (i18nState.loading) return <span />
   const i18next = getI18nextInstance()
