@@ -7,6 +7,7 @@ coverage
 node_modules
 build
 cache
+public/static
 docs
 lib
 config/local.*
@@ -21,4 +22,3 @@ junit
 .env.test.local
 .env.production.local
 .@tablecheck
-.vercel

@@ -1,55 +1,57 @@
+import { Icon } from '@tablecheck/tablekit-icon';
+import { InputShape } from '@tablecheck/tablekit-input';
+import { Item, ItemGroup } from '@tablecheck/tablekit-item';
+import { SpinnerSize } from '@tablecheck/tablekit-spinner';
+import * as React from 'react';
+
 import {
   SearchInput,
   SearchPageContent,
   SearchSpinner,
-  AutocompleteLink,
-} from './styles'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { InputShape } from '@tablecheck/tablekit-input'
-import { Item, ItemGroup } from '@tablecheck/tablekit-item'
-import { SpinnerSize } from '@tablecheck/tablekit-spinner'
-import { Icon } from '@tablecheck/tablekit-icon'
-import '@tablecheck/tablekit-free-icon-config'
-import { faMapMarker, faWarehouse } from '@fortawesome/free-solid-svg-icons'
+  AutocompleteLink
+} from './styles';
+
+import '@tablecheck/tablekit-free-icon-config';
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons/faMapMarker';
+import { faWarehouse } from '@fortawesome/free-solid-svg-icons/faWarehouse';
 
 type Listing = {
-  locations?: [{ text: string; type: string; payload: { geo: {} } }]
-  cuisines?: []
-  shops?: [{ text: string; payload: { shop_slug: string } }]
-}
+  locations?: [{ text: string; type: string; payload: { geo: {} } }];
+  cuisines?: [];
+  shops?: [{ text: string; payload: { shop_slug: string } }];
+};
 
 export function Search(): JSX.Element {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [listing, setListing] = useState<Listing>({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [listing, setListing] = React.useState<Listing>({});
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleChange = async () => {
     try {
-      setIsLoading((prev) => !prev) // spinner to true
+      setIsLoading((prev) => !prev); // spinner to true
       const res = await fetch(
-        `https://staging-snap.tablecheck.com/v2/autocomplete?locale=en&shop_universe_id=57e0b91744aea12988000001&text=${searchQuery}`,
-      )
+        `https://staging-snap.tablecheck.com/v2/autocomplete?locale=en&shop_universe_id=57e0b91744aea12988000001&text=${searchQuery}`
+      );
       if (res.status !== 200) {
-        alert('Error happened. Please try again later.')
-        throw new Error('Error happened. Please try again later.')
+        alert('Error happened. Please try again later.');
+        throw new Error('Error happened. Please try again later.');
       }
-      const data = await res.json()
-      console.log(data)
-      setListing(data)
-      setIsLoading((prev) => !prev) // sppiner to false
+      const data = await res.json();
+      console.log(data);
+      setListing(data);
+      setIsLoading((prev) => !prev); // sppiner to false
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (searchQuery) {
-      handleChange()
+      handleChange();
     } else {
-      setListing({}) // empties the listing object when clearing the input field with X button
+      setListing({}); // empties the listing object when clearing the input field with X button
     }
-  }, [searchQuery])
+  }, [searchQuery]);
 
   const autocomplete = (
     <>
@@ -104,7 +106,7 @@ export function Search(): JSX.Element {
         </>
       )}
     </>
-  )
+  );
 
   return (
     <SearchPageContent>
@@ -120,5 +122,5 @@ export function Search(): JSX.Element {
         message={autocomplete}
       />
     </SearchPageContent>
-  )
+  );
 }

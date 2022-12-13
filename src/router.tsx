@@ -1,13 +1,13 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { About } from 'Pages/About'
-import { Home } from 'Pages/Home'
-import { Listing } from 'Pages/Listing'
-import { ShopDetail } from 'Pages/ShopDetail'
-import { ReportIssue } from 'Pages/ReportIssue'
-import { AppRoute } from 'enums'
+import { About } from 'Pages/About';
+import { Home } from 'Pages/Home';
+import { Listing } from 'Pages/Listing';
+import { ReportIssue } from 'Pages/ReportIssue';
+import { ShopDetail } from 'Pages/ShopDetail';
+import { AppRoute } from 'enums';
 
-import { PageLayout } from './Layouts/Page'
+import { PageLayout } from './Layouts/Page';
 
 export function Router(): JSX.Element {
   // react router v6 not accepting regex on path yet
@@ -26,7 +26,7 @@ export function Router(): JSX.Element {
         <Route path={AppRoute.About} element={<About />} />
         <Route path={AppRoute.ReportIssue} element={<ReportIssue />} />
       </Route>
-      <Route path="*" element={<Navigate to={'/'} replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
-  )
+  );
 }

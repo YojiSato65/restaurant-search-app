@@ -1,3 +1,3 @@
 module.exports = {
-    extends: ['@tablecheck/eslint-config']
+  extends: ['@tablecheck/eslint-config']
 };

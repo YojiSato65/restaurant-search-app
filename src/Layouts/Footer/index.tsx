@@ -1,12 +1,12 @@
-import { Link } from '@tablecheck/tablekit-typography'
-import { useTranslation } from 'react-i18next'
+import { Link } from '@tablecheck/tablekit-typography';
+import { useTranslation } from 'react-i18next';
 
-import { AppRoute } from 'enums'
+import { AppRoute } from 'enums';
 
-import { FooterHrefLink, FooterLink, FooterWrapper } from './styles'
+import { FooterHrefLink, FooterLink, FooterWrapper } from './styles';
 
 export function Footer(): JSX.Element | null {
-  const [t, { language }] = useTranslation()
+  const [t, { language }] = useTranslation();
 
   return (
     <FooterWrapper>
@@ -27,5 +27,5 @@ export function Footer(): JSX.Element | null {
         </Link>
       </div>
     </FooterWrapper>
-  )
+  );
 }

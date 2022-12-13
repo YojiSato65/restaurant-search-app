@@ -1,51 +1,51 @@
-import { faObjectGroup } from '@fortawesome/free-regular-svg-icons/faObjectGroup'
-import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons/faQuestionCircle'
-import { faBug } from '@fortawesome/free-solid-svg-icons/faBug'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe'
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
-import { ordered } from '@tablecheck/locales'
-import { ButtonAppearance } from '@tablecheck/tablekit-button'
-import { Icon } from '@tablecheck/tablekit-icon'
-import { Item } from '@tablecheck/tablekit-item'
-import { LanguageSelector, View } from '@tablecheck/tablekit-language-selector'
-import * as React from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { tciSun } from 'tablecheck-icons/tciSun'
+import { faObjectGroup } from '@fortawesome/free-regular-svg-icons/faObjectGroup';
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons/faQuestionCircle';
+import { faBug } from '@fortawesome/free-solid-svg-icons/faBug';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { ordered } from '@tablecheck/locales';
+import { ButtonAppearance } from '@tablecheck/tablekit-button';
+import { Icon } from '@tablecheck/tablekit-icon';
+import { Item } from '@tablecheck/tablekit-item';
+import { LanguageSelector, View } from '@tablecheck/tablekit-language-selector';
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { tciSun } from 'tablecheck-icons/tciSun';
 
-import { AppRoute } from 'enums'
+import { AppRoute } from 'enums';
 
 import {
   CloseButton,
   MobileOnlyItems,
   SidenavItems,
-  SidenavWrapper,
-} from './styles'
+  SidenavWrapper
+} from './styles';
 
 export function Sidenav({
   isOpen,
   setOpen,
-  changeLanguage,
+  changeLanguage
 }: {
-  isOpen: boolean
-  setOpen: (value: boolean) => void
-  changeLanguage: (locale: string) => void
+  isOpen: boolean;
+  setOpen: (value: boolean) => void;
+  changeLanguage: (locale: string) => void;
 }): JSX.Element | null {
-  const [t, { language }] = useTranslation()
+  const [t, { language }] = useTranslation();
 
   const onOutsideClickPanel = React.useCallback(
     (event: MouseEvent) => {
-      const button = document.querySelector('#button-left')
+      const button = document.querySelector('#button-left');
       if (!button?.contains(event.target as Node)) {
-        setOpen(false)
+        setOpen(false);
       }
     },
-    [setOpen],
-  )
+    [setOpen]
+  );
 
-  const currentLocale = ordered.find((locale) => locale.code === language)
+  const currentLocale = ordered.find((locale) => locale.code === language);
 
-  if (!language || !ordered) return null
+  if (!language || !ordered) return null;
 
   return (
     <SidenavWrapper
@@ -87,5 +87,5 @@ export function Sidenav({
         </Item>
       </SidenavItems>
     </SidenavWrapper>
-  )
+  );
 }

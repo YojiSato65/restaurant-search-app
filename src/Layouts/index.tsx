@@ -1,17 +1,17 @@
-import styled from '@emotion/styled'
-import { Spacing } from '@tablecheck/tablekit-theme'
+import styled from '@emotion/styled';
+import { Spacing } from '@tablecheck/tablekit-theme';
 import {
   getLinkStyles,
-  TypographyHeadlineDesktop,
-} from '@tablecheck/tablekit-typography'
-import { Link } from 'react-router-dom'
+  TypographyHeadlineDesktop
+} from '@tablecheck/tablekit-typography';
+import { Link } from 'react-router-dom';
 
-import { fadeIn, pageTransitionEasing } from 'styles'
+import { fadeIn, pageTransitionEasing } from 'styles';
 
-export const GRID_MARGIN = Spacing.L4
-export const GRID_DESKTOP_MAX_WIDTH = '74em'
+export const GRID_MARGIN = Spacing.L4;
+export const GRID_DESKTOP_MAX_WIDTH = '74em';
 
-export const TOPNAV_HEIGHT = '72px'
+export const TOPNAV_HEIGHT = '72px';
 
 /* Breakpoints */
 // mobile: 20rem (320px) - 47.938rem (767px)
@@ -20,14 +20,14 @@ export const TOPNAV_HEIGHT = '72px'
 export const BREAKPOINTS = {
   // The default scope is for mobile
   tablet: '48rem', // @media (min-width: ${BREAKPOINTS.tablet})
-  desktop: '64rem', // @media (min-width: ${BREAKPOINTS.desktop})
-}
+  desktop: '64rem' // @media (min-width: ${BREAKPOINTS.desktop})
+};
 
 export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-`
+`;
 
 export const PageWrapper = styled.div`
   width: 100%;
@@ -37,7 +37,7 @@ export const PageWrapper = styled.div`
   margin: 0 auto;
   flex: 1 0 auto;
   animation: ${fadeIn} ${pageTransitionEasing} 0.5s;
-`
+`;
 
 export const PageContent = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ export const PageContent = styled.div`
   @media (min-width: ${BREAKPOINTS.tablet}) {
     flex-direction: row;
   }
-`
+`;
 
 export const Headline = styled.h1`
   ${TypographyHeadlineDesktop.Heading1};
@@ -55,7 +55,7 @@ export const Headline = styled.h1`
   @media (min-width: ${BREAKPOINTS.tablet}) {
     ${TypographyHeadlineDesktop.Headline};
   }
-`
+`;
 
 export const PageImage = styled.img`
   width: 100%;
@@ -67,8 +67,8 @@ export const PageImage = styled.img`
     max-width: 50%;
     margin-left: ${Spacing.L8};
   }
-`
+`;
 
 export const PageLink = styled(Link)`
   ${getLinkStyles};
-`
+`;

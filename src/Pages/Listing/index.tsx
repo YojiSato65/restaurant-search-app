@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { SpinnerSize } from '@tablecheck/tablekit-spinner'
-import { ListingSpinner } from '../../styles/index'
+import { SpinnerSize } from '@tablecheck/tablekit-spinner';
+import * as React from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { ListingSpinner } from '../../styles/index';
+
 import {
   Genre,
   LeftDiv,
@@ -10,88 +12,88 @@ import {
   ShopContainer,
   ShopLink,
   Title,
-  Image,
-} from './styles'
+  Image
+} from './styles';
 
 type ShopList = {
-  _id: string
-  name: string
-  slug: string
-  cuisines: string[]
-  content_title_translations: { translation: string }[]
-  search_image: string
-}
+  _id: string;
+  name: string;
+  slug: string;
+  cuisines: string[];
+  content_title_translations: { translation: string }[];
+  search_image: string;
+};
 
 type Geo = {
-  lat: string
-  lon: string
-}
+  lat: string;
+  lon: string;
+};
 
 export function Listing(): JSX.Element {
-  const [shopList, setShopList] = useState<ShopList[]>([
+  const [shopList, setShopList] = React.useState<ShopList[]>([
     {
       _id: '',
       name: '',
       slug: '',
       cuisines: [],
       content_title_translations: [{ translation: '' }],
-      search_image: '',
-    },
-  ])
+      search_image: ''
+    }
+  ]);
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const location = useLocation()
-  let geoCoordinates = location.state as Geo
+  const location = useLocation();
+  let geoCoordinates = location.state as Geo;
 
-  const queryParams = new URLSearchParams(window.location.search)
-  const term = queryParams.get('term')
+  const queryParams = new URLSearchParams(window.location.search);
+  const term = queryParams.get('term');
 
   const getListing = async () => {
     try {
-      setIsLoading((prev) => !prev)
+      setIsLoading((prev) => !prev);
       const res = await fetch(
-        `https://staging-snap.tablecheck.com/v2/shop_search?geo_latitude=${geoCoordinates.lat}&geo_longitude=${geoCoordinates.lon}&shop_universe_id=57e0b91744aea12988000001&locale=en&per_page=50`,
-      )
+        `https://staging-snap.tablecheck.com/v2/shop_search?geo_latitude=${geoCoordinates.lat}&geo_longitude=${geoCoordinates.lon}&shop_universe_id=57e0b91744aea12988000001&locale=en&per_page=50`
+      );
       if (res.status !== 200) {
-        alert('Error happened. Please try again later.')
-        throw new Error('Error happened. Please try again later.')
+        alert('Error happened. Please try again later.');
+        throw new Error('Error happened. Please try again later.');
       }
-      const data = await res.json()
+      const data = await res.json();
 
-      setShopList(data.shops)
-      setIsLoading((prev) => !prev)
+      setShopList(data.shops);
+      setIsLoading((prev) => !prev);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const updateListing = async () => {
     try {
-      setIsLoading((prev) => !prev)
+      setIsLoading((prev) => !prev);
       const res = await fetch(
-        `https://staging-snap.tablecheck.com/v2/autocomplete?locale=en&shop_universe_id=57e0b91744aea12988000001&text=${term}`,
-      )
+        `https://staging-snap.tablecheck.com/v2/autocomplete?locale=en&shop_universe_id=57e0b91744aea12988000001&text=${term}`
+      );
       if (res.status !== 200) {
-        alert('Error happened. Please try again later.')
-        throw new Error('Error happened. Please try again later.')
+        alert('Error happened. Please try again later.');
+        throw new Error('Error happened. Please try again later.');
       }
-      const data = await res.json()
-      geoCoordinates = data.locations[0].payload.geo
-      getListing()
-      setIsLoading((prev) => !prev)
+      const data = await res.json();
+      geoCoordinates = data.locations[0].payload.geo;
+      getListing();
+      setIsLoading((prev) => !prev);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!term) {
-      getListing()
+      getListing();
     } else {
-      updateListing() // make the url with query loadable
+      updateListing(); // make the url with query loadable
     }
-  }, [term])
+  }, [term]);
 
   return (
     <>
@@ -138,5 +140,5 @@ export function Listing(): JSX.Element {
         </ListingWrapper>
       )}
     </>
-  )
+  );
 }

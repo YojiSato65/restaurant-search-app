@@ -1,4 +1,5 @@
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet';
+
 import {
   ShopDetailContainer,
   LeftDiv,
@@ -10,45 +11,45 @@ import {
   CuisinePriceContainer,
   CuisinePrice,
   ShopImage,
-  NoResultDiv,
-} from './styles'
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import '@tablecheck/tablekit-free-icon-config'
-import { Icon } from '@tablecheck/tablekit-icon'
-import {
-  faGlobe,
-  faMoneyBill,
-  faMoon,
-  faPhone,
-  faSun,
-  faUtensils,
-} from '@fortawesome/free-solid-svg-icons'
-import { SpinnerSize } from '@tablecheck/tablekit-spinner'
-import { ListingSpinner } from '../../styles/index'
+  NoResultDiv
+} from './styles';
+
+import '@tablecheck/tablekit-free-icon-config';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
+import { faMoneyBill } from '@fortawesome/free-solid-svg-icons/faMoneyBill';
+import { faMoon } from '@fortawesome/free-solid-svg-icons/faMoon';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faSun } from '@fortawesome/free-solid-svg-icons/faSun';
+import { faUtensils } from '@fortawesome/free-solid-svg-icons/faUtensils';
+import { Icon } from '@tablecheck/tablekit-icon';
+import { SpinnerSize } from '@tablecheck/tablekit-spinner';
+import * as React from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { ListingSpinner } from '../../styles/index';
 
 type ShopDetail = {
-  name: string[]
-  url: string
-  phone_natl: string
+  name: string[];
+  url: string;
+  phone_natl: string;
   alt_address?: {
-    city?: string
-    street?: string
-    street2?: string
-    region?: string
-  }
-  content_title_translations?: { translation?: string }[]
-  content_body_translations?: { translation?: string }[]
-  cuisines: string[]
-  budget_dinner_max?: string
-  budget_dinner_min?: string
-  budget_lunch_max?: string
-  budget_lunch_min?: string
-  search_image?: string
-}
+    city?: string;
+    street?: string;
+    street2?: string;
+    region?: string;
+  };
+  content_title_translations?: { translation?: string }[];
+  content_body_translations?: { translation?: string }[];
+  cuisines: string[];
+  budget_dinner_max?: string;
+  budget_dinner_min?: string;
+  budget_lunch_max?: string;
+  budget_lunch_min?: string;
+  search_image?: string;
+};
 
 export function ShopDetail(): JSX.Element {
-  const [shopDetail, setShopDetail] = useState<ShopDetail>({
+  const [shopDetail, setShopDetail] = React.useState<ShopDetail>({
     name: [],
     url: '',
     phone_natl: '',
@@ -60,40 +61,40 @@ export function ShopDetail(): JSX.Element {
     budget_dinner_min: '',
     budget_lunch_max: '',
     budget_lunch_min: '',
-    search_image: '',
-  })
+    search_image: ''
+  });
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const location = useLocation()
-  const shop = location.state
-  console.log('shop', shop)
+  const location = useLocation();
+  const shop = location.state;
+  console.log('shop', shop);
 
   const getShopDetails = async () => {
     try {
-      setIsLoading((prev) => !prev)
+      setIsLoading((prev) => !prev);
       const res = await fetch(
-        `https://staging-snap.tablecheck.com/v2/shops/${shop}?sort=slug&sort_by=slug&sort_order=asc`,
-      )
+        `https://staging-snap.tablecheck.com/v2/shops/${shop}?sort=slug&sort_by=slug&sort_order=asc`
+      );
       if (res.status !== 200) {
-        alert('Error happened. Please try again later.')
-        throw new Error('Error happened. Please try again later.')
+        alert('Error happened. Please try again later.');
+        throw new Error('Error happened. Please try again later.');
       }
-      const data = await res.json()
-      console.log('data', data.shops[0])
-      setShopDetail(data.shops[0])
-      setIsLoading((prev) => !prev)
+      const data = await res.json();
+      console.log('data', data.shops[0]);
+      setShopDetail(data.shops[0]);
+      setIsLoading((prev) => !prev);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
-  useEffect(() => {
-    getShopDetails()
-  }, [])
+  React.useEffect(() => {
+    getShopDetails();
+  }, []);
 
   if (shopDetail === undefined) {
-    return <NoResultDiv>No detail found</NoResultDiv>
+    return <NoResultDiv>No detail found</NoResultDiv>;
   }
 
   return (
@@ -279,5 +280,5 @@ export function ShopDetail(): JSX.Element {
         </ShopDetailContainer>
       )}
     </>
-  )
+  );
 }
