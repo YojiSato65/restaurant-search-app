@@ -59,6 +59,9 @@ export function Search(): JSX.Element {
         <SearchSpinner size={SpinnerSize.Regular} />
       ) : (
         <>
+          {searchQuery && Object.keys(listing).length === 0 && (
+            <ItemGroup headingText="No result"></ItemGroup>
+          )}
           <ItemGroup
             headingText={
               listing.locations && (

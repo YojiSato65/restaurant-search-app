@@ -10,7 +10,7 @@
     "**/__tests__/*"
   ],
   "files": [
-    "/Users/yoji/Desktop/Software engineer/Job hunting 2022.11/tablecheck-demo/.@tablecheck/definitions.d.ts"
+    "/Users/yoji/Desktop/Software engineer/Job hunting 2022.11/restaurant-search-app/.@tablecheck/definitions.d.ts"
   ],
   "include": [
     "src/**/*.ts",

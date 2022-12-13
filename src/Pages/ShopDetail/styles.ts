@@ -5,11 +5,13 @@ import { BREAKPOINTS } from 'Layouts';
 export const ShopDetailContainer = styled.div`
   display: flex;
   width: min(80vw, 1100px);
-  margin: auto;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
   gap: 5%;
   @media (max-width: ${BREAKPOINTS.tablet}) {
     flex-direction: column;
-    margin-top: 1em;
   }
 `;
 
@@ -54,6 +56,9 @@ export const CuisinePriceContainer = styled.div`
 export const CuisinePriceDiv = styled.div`
   width: 50%;
   margin-bottom: 1em;
+  @media (max-width: ${BREAKPOINTS.tablet}) {
+    width: 100%;
+  }
 `;
 
 export const CuisinePrice = styled.h3`

@@ -14,6 +14,7 @@ export const SearchInput = styled(Input)`
   box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 11%);
   overflow-y: scroll;
   max-height: 50vh;
+  background: white;
 `;
 
 export const SearchSpinner = styled(Spinner)`

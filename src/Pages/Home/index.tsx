@@ -3,7 +3,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Search } from 'Pages/Search';
 
-import { HomeHeadline, HomeWrapper } from './styles';
+import {
+  BackgroundImage,
+  BackgroundImageDiv,
+  HomeHeadline,
+  HomeWrapper
+} from './styles';
 
 export function Home(): JSX.Element {
   const [t, { language }] = useTranslation();
@@ -17,6 +22,12 @@ export function Home(): JSX.Element {
         )}`}</title>
       </Helmet>
       <Search />
+      <BackgroundImageDiv>
+        <BackgroundImage
+          src={require('../../assets/bg.jpg')}
+          alt="background"
+        />
+      </BackgroundImageDiv>
     </HomeWrapper>
   );
 }
