@@ -205,7 +205,7 @@ export function ShopDetail(): JSX.Element {
                     {shopDetail.budget_lunch_min &&
                     shopDetail.budget_lunch_max ? (
                       <span>
-                        <Icon icon={faSun} /> ¥{' '}
+                        <Icon icon={faSun} /> ¥
                         {shopDetail.budget_lunch_min
                           .slice(0, -2)
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
