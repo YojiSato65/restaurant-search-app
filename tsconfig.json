@@ -1,14 +1,6 @@
 {
   "extends": "@tablecheck/scripts/tsconfig/base.json",
-  "exclude": [
-    "node_modules",
-    "**/*.cypress.ts",
-    "**/*.cypress.tsx",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/__tests__/**/*",
-    "**/__tests__/*"
-  ],
+  "exclude": ["node_modules"],
   "files": [
     "/Users/yoji/Desktop/Software engineer/Job hunting 2022.11/restaurant-search-app/.@tablecheck/definitions.d.ts"
   ],
